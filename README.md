@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# 3D Particle Text Effect
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React and Three.js based project that creates stunning 3D particle text effects. This project transforms text into interactive 3D particle animations with customizable parameters.
 
-## Available Scripts
+## Prerequisites for Mac
 
-In the project directory, you can run:
+1. Install Node.js and npm:
+   - Using Homebrew (recommended):
+   ```bash
+   # Install Homebrew if you haven't
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   
+   # Install Node.js (includes npm)
+   brew install node
+   ```
+   
+   - Or download directly from [Node.js official website](https://nodejs.org/)
 
-### `npm start`
+2. Verify installation:
+   ```bash
+   node --version
+   npm --version
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Clone the project and install dependencies:
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running the Project
 
-### `npm run build`
+Start the development server:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The project will automatically open in your browser at http://localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Effect Parameters Configuration
 
-### `npm run eject`
+You can customize the 3D effect by modifying parameters in `src/Effect3DPage.js`. Here are all available parameters and their descriptions:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
+<Effect3D
+  frontText="G"              // Text displayed on the front
+  backText="R"              // Text displayed on the back
+  canvasSize={400}          // Canvas size (pixels)
+  canvasBackground="#000000" // Canvas background color
+  fontSize={200}            // Font size
+  fontFamily="Arial Black"   // Font family
+  rotationSpeed={0.005}     // Rotation speed (higher = faster)
+  particleScaleSpeed={5}    // Particle scale animation speed
+  particleMinScale={0.5}    // Minimum particle scale
+  particleMaxScale={1.5}    // Maximum particle scale
+  particleColor={0xffffff}  // Particle color (hexadecimal)
+  particleGap={12}          // Gap between particles (higher = more sparse)
+/>
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Parameter Adjustment Guidelines
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Text Settings**
+   - `frontText` and `backText`: Can be set to any single character
+   - `fontSize`: Recommended to be 40-60% of the `canvasSize`
+   - `fontFamily`: Bold fonts are recommended for better visual effect
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Animation Settings**
+   - `rotationSpeed`: Recommended range 0.001-0.01 (higher = faster rotation)
+   - `particleScaleSpeed`: Recommended range 1-10 (affects particle scale animation speed)
 
-## Learn More
+3. **Particle Settings**
+   - `particleGap`: Lower values create denser particle distribution (recommended range: 8-20)
+   - `particleMinScale` and `particleMaxScale`: Control particle size variation range (default values recommended)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Canvas Settings**
+   - `canvasSize`: Adjust based on display area (recommended range: 300-800)
+   - `canvasBackground`: Any color can be set, dark backgrounds work best
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Important Notes
 
-### Code Splitting
+- Changes to parameters take effect immediately
+- Decreasing `particleGap` increases particle count, which may affect performance
+- Make gradual adjustments to achieve the best balance between visual effect and performance
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Troubleshooting
 
-### Analyzing the Bundle Size
+If you encounter any issues with npm dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Clear npm cache:
+   ```bash
+   npm cache clean --force
+   ```
 
-### Making a Progressive Web App
+2. Delete node_modules and reinstall:
+   ```bash
+   rm -rf node_modules
+   rm package-lock.json
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. If you get permission errors:
+   ```bash
+   sudo chown -R $USER /usr/local/lib/node_modules
+   ```
